@@ -8,9 +8,8 @@ concurrency:
 
 env:
     ROLE_TO_ASSUME: arn:aws:iam::692314432491:role/github-terraform-repo-role
-    AWS_REGION: eu-west-2 # match the region specified in accounts/aws-dev/global/cross-region
-    ROOT_TERRAGRUNT_DIRECTORY: accounts/aws-dev
-    PLAN_OUTPUT_NAME: terragrunt-plan-aws-dev-output
+    AWS_REGION: us-east-1
+    PLAN_OUTPUT_NAME: plan.out
     PLAN_COMBINED_OUTPUT_FILE: plan-output.txt
     TFLINT_VERSION: v0.46.1
     TERRAFORM_VERSION: 1.3.9
@@ -42,3 +41,26 @@ jobs:
               id: format
               run: terraform fmt -check -recursive -no-color
               continue-on-error: true
+    plan:
+        runs-on: ubuntu-latest
+        needs: validate
+
+        steps:
+            - name: Check out repository code
+              uses: actions/checkout@v2
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v1
+              with:
+                  terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v1-node16
+              id: configure-aws-credentials
+              continue-on-error: true
+              with:
+                  role-to-assume: ${{ env.ROLE_TO_ASSUME }}
+                  aws-region: ${{ env.AWS_REGION }}
+            - name: Terraform plan
+              id: plan
+              run: |
+                  terraform plan -var-file="tests/test_variables.tfvars" -out=${{ env.PLAN_OUTPUT_NAME }}
