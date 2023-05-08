@@ -1,16 +1,16 @@
 variable "instance_size" {
   description = "Size of the EC2 instance used to run the SEC (see the [CDO docs](https://docs.defenseorchestrator.com/#!t_install-a-cdo-connector-to-support-an-on-premises-sec-using-your-vm-image1.html) for requirements). Allowed values: \"r5a.xlarge\", \"r5a.2xlarge\", \"r5a.4xlarge\", \"r5a.8xlarge\", \"r5a.12xlarge\". We recommend using r5a.xlarge (the default)."
-  default = "r5a.xlarge"
-  
+  default     = "r5a.xlarge"
+
   validation {
-    condition = contains(["r5a.xlarge", "r5a.2xlarge", "r5a.4xlarge", "r5a.8xlarge", "r5a.12xlarge"], var.instance_size)
+    condition     = contains(["r5a.xlarge", "r5a.2xlarge", "r5a.4xlarge", "r5a.8xlarge", "r5a.12xlarge"], var.instance_size)
     error_message = "Invalid instance size. Allowed values are: \"r5a.xlarge\", \"r5a.2xlarge\", \"r5a.4xlarge\", \"r5a.8xlarge\", \"r5a.12xlarge\". We recommend using r5a.xlarge (the default)."
   }
 }
 
 variable "env" {
   description = "A user-defined string to indicate the environment."
-  default = "prod"
+  default     = "prod"
 }
 
 variable "instance_name" {
@@ -37,7 +37,7 @@ variable "tags" {
   description = "The tags to add to all of the resources created by this Terraform module."
   default = {
     ApplicationName = "Cisco Defense Orchestrator"
-    ServiceName = "SEC"
+    ServiceName     = "SEC"
   }
 }
 
@@ -59,5 +59,5 @@ variable "hosted_zone_id" {
 
 variable "cidr" {
   description = "CIDR to allow traffic from to SEC instance. Restrict this to the subnet the firewalls and SD-WAN devices you want to send syslog data from are in. We *do not* recommend using the default value, as this will allow anybody on the internet to send logs to your SEC."
-  default = "0.0.0.0/0"
+  default     = "0.0.0.0/0"
 }
