@@ -1,3 +1,11 @@
+terraform {
+  required_version = "1.3.9"
+  required_providers {
+    aws = "~> 4.66.1"
+    template = "~> 2.2.0"
+  }
+}
+
 data "aws_ami" "sec" {
   filter {
     name   = "name"
@@ -12,10 +20,6 @@ data "aws_ami" "sec" {
   owners = ["692314432491"]
 
   most_recent = true
-}
-
-data "aws_vpc" "sec" {
-  id = var.vpc_id
 }
 
 resource "aws_security_group" "sec" {
