@@ -1,0 +1,13 @@
+name: Tag and release
+on: push
+jobs:
+    release:
+        if: github.ref == 'refs/heads/LH-666710semantic-versioning'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository code
+              uses: actions/checkout@v2
+            - name: Bump version and push tag
+              uses: cisco-lockhart/github-tag-action@1.0.0
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
