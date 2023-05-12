@@ -8,6 +8,6 @@ jobs:
             - name: Checkout repository code
               uses: actions/checkout@v2
             - name: Bump version and push tag
-              uses: cisco-lockhart/github-tag-action@v1.0.0
+              uses: cisco-lockhart/github-tag-action@v1.0.1
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
