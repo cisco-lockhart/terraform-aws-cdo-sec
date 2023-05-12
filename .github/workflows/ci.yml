@@ -2,7 +2,7 @@ name: Tag and release
 on: push
 jobs:
     release:
-        if: github.ref == 'refs/heads/LH-666710semantic-versioning'
+        if: github.ref == 'refs/heads/master'
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository code
