@@ -9,7 +9,7 @@ terraform {
 data "aws_ami" "sec" {
   filter {
     name   = "name"
-    values = ["sec*"]
+    values = ["cdo-connector*"]
   }
 
   filter {
