@@ -13,6 +13,11 @@ data "aws_ami" "sec" {
   }
 
   filter {
+    name   = "tag"
+    values = ["${var.version}"]
+  }
+
+  filter {
     name   = "architecture"
     values = ["x86_64"]
   }
@@ -74,7 +79,8 @@ resource "aws_instance" "sec" {
   instance_type        = var.instance_size
   iam_instance_profile = aws_iam_instance_profile.sec-ssm-instance-profile.id
   tags = merge({
-    Name = "${var.env}-${var.instance_name}-sec"
+    Name    = "${var.env}-${var.instance_name}-sec"
+    Version = var.version
   }, var.tags)
   subnet_id              = var.subnet_id
   vpc_security_group_ids = [aws_security_group.sec.id]

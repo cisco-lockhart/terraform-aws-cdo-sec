@@ -9,6 +9,11 @@ variable "instance_size" {
   }
 }
 
+variable "version" {
+  description = "The version of the SEC AMI will be used."
+  type        = string
+}
+
 variable "env" {
   description = "A user-defined string to indicate the environment."
   type        = string
