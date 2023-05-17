@@ -80,7 +80,7 @@ resource "aws_instance" "sec" {
   iam_instance_profile = aws_iam_instance_profile.sec-ssm-instance-profile.id
   tags = merge({
     Name    = "${var.env}-${var.instance_name}-sec"
-    Version = var.version
+    Version = var.ami_version
   }, var.tags)
   subnet_id              = var.subnet_id
   vpc_security_group_ids = [aws_security_group.sec.id]
