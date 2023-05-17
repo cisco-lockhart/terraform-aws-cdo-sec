@@ -9,7 +9,7 @@ variable "instance_size" {
   }
 }
 
-variable "version" {
+variable "ami_version" {
   description = "The version of the SEC AMI will be used."
   type        = string
 }
