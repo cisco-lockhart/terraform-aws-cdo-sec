@@ -10,8 +10,9 @@ variable "instance_size" {
 }
 
 variable "ami_version" {
-  description = "The version of the SEC AMI will be used."
+  description = "The version of the SEC AMI."
   type        = string
+  default     = "6af4440e3205e71d1fa77466540d1e5235a8b20f"  # should be a commit hash from https://github.com/cisco-lockhart/cdo_connector_cookbook
 }
 
 variable "env" {
