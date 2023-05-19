@@ -18,7 +18,7 @@ data "aws_ami" "sec" {
 
   filter {
     name   = "tag:version"
-    values = [locals.ami_version]
+    values = [local.ami_version]
   }
 
   filter {
