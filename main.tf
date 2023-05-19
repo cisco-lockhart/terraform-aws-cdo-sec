@@ -6,6 +6,10 @@ terraform {
   }
 }
 
+locals {
+  ami_version = "6af4440e3205e71d1fa77466540d1e5235a8b20f"
+}
+
 data "aws_ami" "sec" {
   filter {
     name   = "name"
@@ -14,7 +18,7 @@ data "aws_ami" "sec" {
 
   filter {
     name   = "tag:version"
-    values = [var.ami_version]
+    values = [locals.ami_version]
   }
 
   filter {
