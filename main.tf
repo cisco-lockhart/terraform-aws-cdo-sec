@@ -13,7 +13,7 @@ data "aws_ami" "sec" {
   }
 
   filter {
-    name   = "tag:ami_version"
+    name   = "tag:version"
     values = [var.ami_version]
   }
 
