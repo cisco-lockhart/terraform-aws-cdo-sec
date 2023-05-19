@@ -1,7 +1,7 @@
 terraform {
   required_version = "1.3.9"
   required_providers {
-    aws = "~> 4.66.1"
+    aws      = "~> 4.66.1"
     template = "~> 2.2.0"
   }
 }
@@ -83,7 +83,7 @@ resource "aws_instance" "sec" {
   instance_type        = var.instance_size
   iam_instance_profile = aws_iam_instance_profile.sec-ssm-instance-profile.id
   tags = merge({
-    Name    = "${var.env}-${var.instance_name}-sec"
+    Name        = "${var.env}-${var.instance_name}-sec"
     AMI_Version = local.ami_version
   }, var.tags)
   subnet_id              = var.subnet_id
