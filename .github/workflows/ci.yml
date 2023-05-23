@@ -7,7 +7,7 @@ jobs:
         steps:
             - name: Checkout repository code
               uses: actions/checkout@v2
-            - name: Create and push tag
+            - name: Bump version and push tag
               uses: mathieudutour/github-tag-action@v6.1
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
