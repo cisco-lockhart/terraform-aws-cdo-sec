@@ -7,7 +7,7 @@ terraform {
 }
 
 locals {
-  ami_version = "6af4440e3205e71d1fa77466540d1e5235a8b20f"
+  ami_version = "v0.0.1"
 }
 
 data "aws_ami" "sec" {
